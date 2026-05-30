@@ -12,6 +12,7 @@
     .screen{position:relative;width:min(100vw,177.7778vh);height:min(56.25vw,100vh);aspect-ratio:16/9;padding:16px 24px 14px;display:grid;grid-template-rows:64px 104px minmax(0,1fr) 24px;gap:10px;background:
       radial-gradient(circle at 50% 22%,rgba(18,93,174,.28),transparent 38%),
       linear-gradient(180deg,#05184a 0%,#061337 43%,#02091f 100%);border:1px solid #1b63c8;border-radius:4px;overflow:hidden}
+    .screen:fullscreen{width:100vw;height:100vh;max-width:none;max-height:none}
     .screen:before{content:"";position:absolute;inset:0;background:
       linear-gradient(rgba(72,151,255,.035) 1px,transparent 1px),
       linear-gradient(90deg,rgba(72,151,255,.035) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
@@ -20,7 +21,7 @@
     .brand{display:flex;align-items:center;gap:10px;padding-top:13px;font-size:17px}.brand:before{content:"";width:18px;height:18px;border-radius:50%;background:conic-gradient(from 30deg,#25e6ff,#2b79ff,#25e6ff);box-shadow:0 0 16px #239cff}
     .title{text-align:center;position:relative}.title h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:0;text-shadow:0 0 18px rgba(95,183,255,.62)}.title p{margin:10px 0 0;color:#bcd8ff;font-size:16px}
     .title:before,.title:after{content:"";position:absolute;top:8px;width:120px;height:28px;border-top:1px solid rgba(45,177,255,.5)}.title:before{right:calc(100% + 18px);transform:skewX(-32deg);border-right:1px solid rgba(45,177,255,.45)}.title:after{left:calc(100% + 18px);transform:skewX(32deg);border-left:1px solid rgba(45,177,255,.45)}
-    .meta{display:flex;justify-content:flex-end;gap:16px;padding-top:14px;color:#bcd8ff;font-size:13px}.meta span{white-space:nowrap}.dot{color:#2ee6ff}
+    .meta{display:flex;justify-content:flex-end;align-items:flex-start;gap:12px;padding-top:14px;color:#bcd8ff;font-size:13px}.meta span{white-space:nowrap}.dot{color:#2ee6ff}.full-btn{height:24px;padding:0 10px;border:1px solid rgba(51,168,255,.65);border-radius:4px;background:rgba(9,43,92,.75);color:#bcd8ff;font:inherit;font-weight:700;cursor:pointer;box-shadow:inset 0 0 12px rgba(45,177,255,.14)}
     .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.card{position:relative;background:linear-gradient(180deg,rgba(12,48,94,.92),rgba(5,27,65,.9));border:1px solid rgba(45,139,242,.58);border-radius:5px;box-shadow:inset 0 0 22px rgba(35,141,255,.08),0 0 12px rgba(0,104,255,.08);overflow:hidden}
     .kpi{display:grid;grid-template-columns:78px 1fr;padding:18px 18px 12px}.kpi-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:radial-gradient(circle,#2e9cff,#123f91 70%);box-shadow:0 0 22px rgba(43,151,255,.38)}.kpi:nth-child(2) .kpi-icon{background:radial-gradient(circle,#5bf0b0,#0e4a70 70%)}.kpi:nth-child(4) .kpi-icon{background:radial-gradient(circle,#9a65ff,#22216d 70%)}.kpi:nth-child(5) .kpi-icon{background:radial-gradient(circle,#f4a65d,#3f3550 70%)}
     .kpi-label{color:#c8dcff;font-size:14px}.kpi-value{margin-top:8px;font-size:28px;line-height:1}.kpi-value small{font-size:16px;margin-left:6px}.kpi-trend{margin-top:8px;color:#c8dcff;font-size:13px}.up{color:#ff776d}.down{color:#2ae89c}
@@ -31,9 +32,9 @@
     .map-area{position:relative;height:calc(100% - 96px);border-radius:4px;background:
       linear-gradient(rgba(26,93,166,.08),rgba(26,93,166,.08)),
       radial-gradient(circle at 52% 46%,rgba(40,146,255,.22),transparent 34%),
-      url("https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/asset/geo/world.png") center/cover no-repeat;overflow:hidden}
+      #04163b;overflow:hidden}
     .map-area:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,13,35,.34),transparent 18%,transparent 82%,rgba(3,13,35,.34));pointer-events:none}
-    .route{position:absolute;inset:0;z-index:1}.node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:grid;gap:8px;justify-items:center}.pin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#3ba0ff;box-shadow:0 0 18px #3ba0ff;color:#fff}.node label{font-size:13px;color:#fff;text-shadow:0 0 8px #001b3f}.ship{position:absolute;z-index:3;color:#fff;font-size:24px;text-shadow:0 0 12px #2f9eff}.info{position:absolute;z-index:4;width:160px;padding:10px;border:1px solid rgba(64,188,255,.65);border-radius:6px;background:rgba(3,23,55,.78);font-size:12px;line-height:1.8}.info.purple{border-color:#926cff}.info.green{border-color:#25e4c8}
+    .world-map{position:absolute;inset:0;z-index:0}.route{position:absolute;inset:0;z-index:1;pointer-events:none}.node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:grid;gap:8px;justify-items:center}.pin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#3ba0ff;box-shadow:0 0 18px #3ba0ff;color:#fff}.node label{font-size:13px;color:#fff;text-shadow:0 0 8px #001b3f}.ship{position:absolute;z-index:3;color:#fff;font-size:24px;text-shadow:0 0 12px #2f9eff}.info{position:absolute;z-index:4;width:160px;padding:10px;border:1px solid rgba(64,188,255,.65);border-radius:6px;background:rgba(3,23,55,.78);font-size:12px;line-height:1.8}.info.purple{border-color:#926cff}.info.green{border-color:#25e4c8}
     .alerts{display:grid;gap:8px}.alert{display:grid;grid-template-columns:18px 1fr auto;align-items:center;padding:8px 10px;border-radius:5px;background:rgba(44,86,135,.24);font-size:13px}.alert i{width:12px;height:12px;border-radius:50%;background:#ff684f}.alert:nth-child(3) i,.alert:nth-child(4) i{background:#ffd44d}.alert:nth-child(5) i{background:#41df8d}.alert b{color:#ff6960}
     .barline{display:grid;gap:14px;margin-top:12px}.bar-row{display:grid;grid-template-columns:86px 1fr 48px;gap:10px;align-items:center;font-size:12px}.bar{height:8px;border-radius:7px;background:#12325f;overflow:hidden}.bar span{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,#3268ff,#62d6ff)}
     .customer table,.orders table{width:100%;border-collapse:collapse;font-size:12px;color:#e6f2ff}.customer th,.customer td,.orders th,.orders td{padding:6px 8px;text-align:left;border-bottom:1px solid rgba(70,139,218,.2)}th{color:#aecaee}.more{text-align:center;color:#2e9cff;font-size:12px;margin-top:8px}
@@ -48,7 +49,7 @@
   <header class="header">
     <div class="brand">全球供应链可视化大屏</div>
     <div class="title"><h1>订单全流程可视化与KPI监控</h1><p>从松山湖生产制造基地 → 海运 → 迪拜供应中心 → 出库 → 客户地点</p></div>
-    <div class="meta"><span>◷ 2024-05-20 10:30:00</span><span class="dot">⟳ 自动刷新：60s</span></div>
+    <div class="meta"><span>◷ 2024-05-20 10:30:00</span><span class="dot">⟳ 自动刷新：60s</span><button class="full-btn" id="fullBtn" type="button">全屏</button></div>
   </header>
   <section class="kpis" id="kpis"></section>
   <main class="layout">
@@ -65,6 +66,7 @@
         <div class="step"><div class="step-icon">●</div><b>5. 客户地点</b><span>已送达</span></div>
       </div>
       <div class="map-area">
+        <div id="worldMap" class="world-map"></div>
         <svg class="route" viewBox="0 0 1000 410" preserveAspectRatio="none">
           <path d="M120 255 C270 205,360 200,460 225 S650 250,720 245 S820 230,910 210" fill="none" stroke="#23c3ff" stroke-width="3" stroke-dasharray="8 8"/>
           <path d="M585 238 C625 208,660 218,702 245" fill="none" stroke="#8c69ff" stroke-width="3" stroke-dasharray="8 8"/>
@@ -103,9 +105,50 @@ document.getElementById('orderTable').innerHTML='<tr><th>订单号</th><th>船�
 ['SO2405001','COSCO SHIPPING XXX','深圳','迪拜','2024-05-22','海运中'],['SO2405002','MSC LORETO','宁波','迪拜','2024-05-23','海运中'],['SO2405003','CMA CGM SEMIRAMIS','上海','迪拜','2024-05-25','海运中'],['SO2405004','EVER GIVEN','厦门','迪拜','2024-05-27','海运中'],['SO2405005','OOCL HONG KONG','深圳','迪拜','2024-05-29','海运中']].map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('');
 document.getElementById('inventoryList').innerHTML=[['高周转（>30天）','820 (35%)','#35c989'],['中周转（15-30天）','965 (41%)','#3479ff'],['低周转（7-15天）','385 (16%)','#ffc04e'],['滞销（<7天）','180 (8%)','#ff6262']].map(r=>`<div class="inv-row"><i class="sw" style="background:${r[2]}"></i><span>${r[0]}</span><b>${r[1]}</b></div>`).join('');
 function chart(id){const c=echarts.init(document.getElementById(id));charts.push(c);return c}
+function loadScript(url){
+  return new Promise((resolve,reject)=>{
+    const s=document.createElement('script');
+    s.src=url;
+    s.onload=resolve;
+    s.onerror=reject;
+    document.head.appendChild(s);
+  });
+}
+async function renderWorldMap(){
+  const map=chart('worldMap');
+  const fallback=()=>{
+    map.setOption({textStyle,grid:{left:0,right:0,top:0,bottom:0},xAxis:{show:false,min:0,max:100},yAxis:{show:false,min:0,max:100},series:[{type:'custom',silent:true,renderItem:(params,api)=>{const shapes=[[[8,62],[18,76],[33,70],[35,58],[24,48],[12,50]],[[25,42],[35,35],[31,18],[23,12],[18,25]],[[42,68],[56,70],[60,58],[51,52],[40,55]],[[48,50],[59,42],[60,26],[52,16],[42,27]],[[60,60],[76,68],[92,58],[86,42],[70,36],[58,44]],[[75,27],[91,29],[95,18],[85,12],[74,16]]];const pts=shapes[params.dataIndex].map(p=>api.coord(p));return {type:'polygon',shape:{points:pts},style:{fill:'rgba(28,102,178,.32)',stroke:'rgba(88,188,255,.58)',lineWidth:1.1}}},data:[0,1,2,3,4,5]}]});
+  };
+  try{
+    await loadScript('https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js');
+    map.setOption({
+      textStyle,
+      geo:{map:'world',roam:false,zoom:1.18,center:[48,26],silent:true,itemStyle:{areaColor:'rgba(19,70,128,.62)',borderColor:'rgba(93,177,255,.62)',borderWidth:.65},emphasis:{disabled:true}},
+      series:[
+        {type:'map',map:'world',geoIndex:0,silent:true,data:[]},
+        {type:'effectScatter',coordinateSystem:'geo',zlevel:3,rippleEffect:{scale:3,brushType:'stroke'},symbolSize:12,itemStyle:{color:'#49a5ff',shadowBlur:18,shadowColor:'#49a5ff'},data:[{name:'松山湖基地',value:[113.8,22.8,1]},{name:'迪拜供应中心',value:[55.27,25.2,1]},{name:'客户地点',value:[103.8,1.35,1]}]},
+        {type:'lines',coordinateSystem:'geo',zlevel:2,effect:{show:true,period:4,trailLength:.25,symbol:'arrow',symbolSize:7,color:'#35c8ff'},lineStyle:{color:'#35c8ff',width:2,opacity:.92,curveness:.22,type:'dashed'},data:[{coords:[[113.8,22.8],[55.27,25.2]]},{coords:[[55.27,25.2],[103.8,1.35]]}]}
+      ]
+    });
+  }catch(e){fallback();}
+}
+function bindFullscreen(){
+  const screen=document.querySelector('.screen');
+  const btn=document.getElementById('fullBtn');
+  btn.addEventListener('click',async()=>{
+    if(!document.fullscreenElement){await screen.requestFullscreen();}
+    else{await document.exitFullscreen();}
+  });
+  document.addEventListener('fullscreenchange',()=>{
+    btn.textContent=document.fullscreenElement?'退出全屏':'全屏';
+    setTimeout(()=>charts.forEach(c=>c.resize()),120);
+  });
+}
+renderWorldMap();
 chart('statusChart').setOption({textStyle,legend:{right:8,top:18,orient:'vertical',textStyle},series:[{type:'pie',radius:['46%','72%'],center:['31%','54%'],label:{show:false},data:[['生产中',312],['海运中',234],['迪拜仓库中',198],['已出库',276],['已送达',228]].map(([name,value])=>({name,value}))},{type:'pie',radius:['0','0'],center:['31%','54%'],label:{position:'center',formatter:'1,248\\n总订单',fontSize:18,color:'#fff',fontWeight:700},data:[{value:1}]}]});
 chart('trendChart').setOption({textStyle,tooltip:{trigger:'axis'},grid:{left:42,right:32,top:34,bottom:30},legend:{top:0,textStyle,data:['订单数','OTD（%）']},xAxis:{type:'category',axisLabel:{color:'#cfe2ff'},data:['W9','W10','W11','W12','W14','W15','W16','W17','W18','W19','W20']},yAxis:[{type:'value',axisLabel:{color:'#cfe2ff'},splitLine:{lineStyle:{color:'rgba(92,151,219,.18)'}}},{type:'value',min:0,max:100,axisLabel:{color:'#cfe2ff',formatter:'{value}%'}}],series:[{name:'订单数',type:'bar',barWidth:14,itemStyle:{color:'#318dff'},data:[216,258,204,231,228,252,263,298,259,278,288]},{name:'OTD（%）',type:'line',yAxisIndex:1,smooth:true,symbolSize:6,itemStyle:{color:'#47df7a'},data:[81,86,89,87,86,80,83,90,84,81,83]}]});
 chart('inventoryChart').setOption({textStyle,series:[{type:'pie',radius:['48%','75%'],center:['52%','50%'],label:{show:false},data:[{name:'高周转',value:820,itemStyle:{color:'#35c989'}},{name:'中周转',value:965,itemStyle:{color:'#3479ff'}},{name:'低周转',value:385,itemStyle:{color:'#ffc04e'}},{name:'滞销',value:180,itemStyle:{color:'#ff6262'}}]},{type:'pie',radius:['0','0'],center:['52%','50%'],label:{position:'center',formatter:'库存总量\\n2,350\\n件',fontSize:16,color:'#fff',fontWeight:700},data:[{value:1}]}]});
+bindFullscreen();
 window.addEventListener('resize',()=>charts.forEach(c=>c.resize()));
 </script>
 </body>
