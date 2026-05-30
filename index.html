@@ -19,7 +19,7 @@
     .header,.kpis,.layout,.footer{position:relative;z-index:1}
     .header{display:grid;grid-template-columns:260px 1fr 360px;align-items:start}
     .brand{display:flex;align-items:center;gap:10px;padding-top:13px;font-size:17px}.brand:before{content:"";width:18px;height:18px;border-radius:50%;background:conic-gradient(from 30deg,#25e6ff,#2b79ff,#25e6ff);box-shadow:0 0 16px #239cff}
-    .title{text-align:center;position:relative}.title h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:0;text-shadow:0 0 18px rgba(95,183,255,.62)}.title p{margin:10px 0 0;color:#bcd8ff;font-size:16px}
+    .title{text-align:center;position:relative}.title h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:0;text-shadow:0 0 18px rgba(95,183,255,.62)}.title p{margin:10px 0 0;color:#bcd8ff;font-size:14px;white-space:nowrap}
     .title:before,.title:after{content:"";position:absolute;top:8px;width:120px;height:28px;border-top:1px solid rgba(45,177,255,.5)}.title:before{right:calc(100% + 18px);transform:skewX(-32deg);border-right:1px solid rgba(45,177,255,.45)}.title:after{left:calc(100% + 18px);transform:skewX(32deg);border-left:1px solid rgba(45,177,255,.45)}
     .meta{display:flex;justify-content:flex-end;align-items:flex-start;gap:10px;padding-top:14px;color:#bcd8ff;font-size:13px;white-space:nowrap}.meta span{white-space:nowrap}.dot{color:#2ee6ff}.full-btn{height:24px;min-width:48px;padding:0 10px;border:1px solid rgba(51,168,255,.65);border-radius:4px;background:rgba(9,43,92,.75);color:#bcd8ff;font:inherit;font-weight:700;line-height:22px;white-space:nowrap;cursor:pointer;box-shadow:inset 0 0 12px rgba(45,177,255,.14)}
     .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.card{position:relative;background:linear-gradient(180deg,rgba(12,48,94,.92),rgba(5,27,65,.9));border:1px solid rgba(45,139,242,.58);border-radius:5px;box-shadow:inset 0 0 22px rgba(35,141,255,.08),0 0 12px rgba(0,104,255,.08);overflow:hidden}
@@ -48,7 +48,7 @@
 <div class="screen">
   <header class="header">
     <div class="brand">全球供应链可视化大屏</div>
-    <div class="title"><h1>订单全流程可视化与KPI监控</h1><p>从松山湖生产制造基地 → 海运 → 迪拜供应中心 → 清关 → 出库 → 客户地点</p></div>
+    <div class="title"><h1>订单全流程可视化与KPI监控</h1><p>深圳供应中心（中国） → 欧洲供应中心（匈牙利） / 拉美供应中心（墨西哥 / 巴西） / 迪拜供应中心（中东） → 清关 → 出库 → 客户地点</p></div>
     <div class="meta"><span>◷ 当前时间：<b id="liveClock">--</b></span><span class="dot">⟳ 自动刷新：60s</span><button class="full-btn" id="fullBtn" type="button">全屏</button></div>
   </header>
   <section class="kpis" id="kpis"></section>
@@ -114,12 +114,24 @@ async function renderWorldMap(){
   };
   try{
     await loadScript('https://cdn.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js');
+    const supplyCenters=[
+      {name:'深圳供应中心（中国）',value:[114.06,22.54,100],itemStyle:{color:'#4aa3ff'}},
+      {name:'欧洲供应中心（匈牙利）',value:[19.04,47.5,90],itemStyle:{color:'#48d985'}},
+      {name:'拉美供应中心（墨西哥 / 巴西）',value:[-99.13,19.43,86],itemStyle:{color:'#ffbd4a'}},
+      {name:'迪拜供应中心（中东）',value:[55.27,25.2,94],itemStyle:{color:'#9a71ff'}}
+    ];
+    const flows=[
+      {coords:[[114.06,22.54],[19.04,47.5]],lineStyle:{color:'#48d985',curveness:.28}},
+      {coords:[[114.06,22.54],[-99.13,19.43]],lineStyle:{color:'#ffbd4a',curveness:.42}},
+      {coords:[[114.06,22.54],[55.27,25.2]],lineStyle:{color:'#9a71ff',curveness:.2}}
+    ];
     map.setOption({
       textStyle,
-      geo:{map:'world',roam:false,zoom:1.18,center:[48,26],silent:true,itemStyle:{areaColor:'rgba(19,70,128,.62)',borderColor:'rgba(93,177,255,.62)',borderWidth:.65},emphasis:{disabled:true}},
+      geo:{map:'world',roam:false,zoom:1.02,center:[20,22],silent:true,itemStyle:{areaColor:'rgba(19,70,128,.62)',borderColor:'rgba(93,177,255,.62)',borderWidth:.65},emphasis:{disabled:true}},
       series:[
         {type:'map',map:'world',geoIndex:0,silent:true,data:[]},
-        {type:'lines',coordinateSystem:'geo',zlevel:2,effect:{show:true,period:4,trailLength:.25,symbol:'arrow',symbolSize:7,color:'#35c8ff'},lineStyle:{color:'#35c8ff',width:2,opacity:.92,curveness:.22,type:'dashed'},data:[{coords:[[113.89,22.91],[55.27,25.2]]},{coords:[[55.27,25.2],[46.68,24.71]]}]}
+        {type:'lines',coordinateSystem:'geo',zlevel:2,effect:{show:true,period:4,trailLength:.3,symbol:'arrow',symbolSize:7,color:'#c9f3ff'},lineStyle:{width:2,opacity:.9,type:'dashed'},data:flows},
+        {type:'effectScatter',coordinateSystem:'geo',zlevel:3,rippleEffect:{scale:3.4,brushType:'stroke'},symbolSize:10,label:{show:true,position:'right',formatter:'{b}',color:'#eaf7ff',fontSize:11,fontWeight:700,textBorderColor:'rgba(0,16,42,.95)',textBorderWidth:3},itemStyle:{shadowBlur:16,shadowColor:'#58baff'},data:supplyCenters}
       ]
     });
   }catch(e){fallback();}
