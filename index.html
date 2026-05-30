@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>订单全流程可视化与KPI监控</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;background:#010816;color:#f4f8ff;font-family:"Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;font-weight:700;overflow:hidden}
+    body{display:grid;place-items:center}
+    .screen{position:relative;width:min(100vw,177.7778vh);height:min(56.25vw,100vh);aspect-ratio:16/9;padding:16px 24px 14px;display:grid;grid-template-rows:64px 104px minmax(0,1fr) 24px;gap:10px;background:
+      radial-gradient(circle at 50% 22%,rgba(18,93,174,.28),transparent 38%),
+      linear-gradient(180deg,#05184a 0%,#061337 43%,#02091f 100%);border:1px solid #1b63c8;border-radius:4px;overflow:hidden}
+    .screen:before{content:"";position:absolute;inset:0;background:
+      linear-gradient(rgba(72,151,255,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(72,151,255,.035) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+    .header,.kpis,.layout,.footer{position:relative;z-index:1}
+    .header{display:grid;grid-template-columns:280px 1fr 300px;align-items:start}
+    .brand{display:flex;align-items:center;gap:10px;padding-top:13px;font-size:17px}.brand:before{content:"";width:18px;height:18px;border-radius:50%;background:conic-gradient(from 30deg,#25e6ff,#2b79ff,#25e6ff);box-shadow:0 0 16px #239cff}
+    .title{text-align:center;position:relative}.title h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:0;text-shadow:0 0 18px rgba(95,183,255,.62)}.title p{margin:10px 0 0;color:#bcd8ff;font-size:16px}
+    .title:before,.title:after{content:"";position:absolute;top:8px;width:120px;height:28px;border-top:1px solid rgba(45,177,255,.5)}.title:before{right:calc(100% + 18px);transform:skewX(-32deg);border-right:1px solid rgba(45,177,255,.45)}.title:after{left:calc(100% + 18px);transform:skewX(32deg);border-left:1px solid rgba(45,177,255,.45)}
+    .meta{display:flex;justify-content:flex-end;gap:16px;padding-top:14px;color:#bcd8ff;font-size:13px}.meta span{white-space:nowrap}.dot{color:#2ee6ff}
+    .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.card{position:relative;background:linear-gradient(180deg,rgba(12,48,94,.92),rgba(5,27,65,.9));border:1px solid rgba(45,139,242,.58);border-radius:5px;box-shadow:inset 0 0 22px rgba(35,141,255,.08),0 0 12px rgba(0,104,255,.08);overflow:hidden}
+    .kpi{display:grid;grid-template-columns:78px 1fr;padding:18px 18px 12px}.kpi-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:radial-gradient(circle,#2e9cff,#123f91 70%);box-shadow:0 0 22px rgba(43,151,255,.38)}.kpi:nth-child(2) .kpi-icon{background:radial-gradient(circle,#5bf0b0,#0e4a70 70%)}.kpi:nth-child(4) .kpi-icon{background:radial-gradient(circle,#9a65ff,#22216d 70%)}.kpi:nth-child(5) .kpi-icon{background:radial-gradient(circle,#f4a65d,#3f3550 70%)}
+    .kpi-label{color:#c8dcff;font-size:14px}.kpi-value{margin-top:8px;font-size:28px;line-height:1}.kpi-value small{font-size:16px;margin-left:6px}.kpi-trend{margin-top:8px;color:#c8dcff;font-size:13px}.up{color:#ff776d}.down{color:#2ae89c}
+    .layout{display:grid;grid-template-columns:18% 1fr 18%;grid-template-rows:62% 38%;gap:10px;min-height:0}.panel{padding:12px;min-height:0}.panel-title{font-size:17px;margin-bottom:10px}.panel-title small{font-size:12px;color:#b8d4ff;margin-left:6px}.chart{width:100%;height:calc(100% - 34px);min-height:0}
+    .left,.right{display:grid;gap:10px;min-height:0}.left{grid-template-rows:47% 53%;grid-row:1/2}.right{grid-template-rows:47% 53%;grid-row:1/2}.center{grid-column:2;grid-row:1/2;min-height:0}.bottom-a{grid-column:1;grid-row:2}.bottom-b{grid-column:2;grid-row:2}.bottom-c{grid-column:3;grid-row:2}
+    .map-panel{padding:12px 18px;background:linear-gradient(180deg,rgba(7,35,79,.72),rgba(4,21,54,.82));border-color:rgba(39,121,226,.62)}
+    .flow-top{height:96px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px}.step{text-align:center;position:relative}.step:not(:last-child):after{content:"➜";position:absolute;right:-17px;top:22px;color:#3589ff;font-size:30px;text-shadow:0 0 10px #218cff}.step-icon{width:58px;height:58px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;font-size:30px;background:radial-gradient(circle,#386db7,#0b2a65 74%);box-shadow:0 0 18px rgba(77,153,255,.32)}.step b{display:block;font-size:14px}.step span{display:block;margin-top:5px;color:#b9d7ff;font-size:12px}
+    .map-area{position:relative;height:calc(100% - 96px);border-radius:4px;background:
+      linear-gradient(rgba(26,93,166,.08),rgba(26,93,166,.08)),
+      radial-gradient(circle at 52% 46%,rgba(40,146,255,.22),transparent 34%),
+      url("https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/asset/geo/world.png") center/cover no-repeat;overflow:hidden}
+    .map-area:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,13,35,.34),transparent 18%,transparent 82%,rgba(3,13,35,.34));pointer-events:none}
+    .route{position:absolute;inset:0;z-index:1}.node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:grid;gap:8px;justify-items:center}.pin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#3ba0ff;box-shadow:0 0 18px #3ba0ff;color:#fff}.node label{font-size:13px;color:#fff;text-shadow:0 0 8px #001b3f}.ship{position:absolute;z-index:3;color:#fff;font-size:24px;text-shadow:0 0 12px #2f9eff}.info{position:absolute;z-index:4;width:160px;padding:10px;border:1px solid rgba(64,188,255,.65);border-radius:6px;background:rgba(3,23,55,.78);font-size:12px;line-height:1.8}.info.purple{border-color:#926cff}.info.green{border-color:#25e4c8}
+    .alerts{display:grid;gap:8px}.alert{display:grid;grid-template-columns:18px 1fr auto;align-items:center;padding:8px 10px;border-radius:5px;background:rgba(44,86,135,.24);font-size:13px}.alert i{width:12px;height:12px;border-radius:50%;background:#ff684f}.alert:nth-child(3) i,.alert:nth-child(4) i{background:#ffd44d}.alert:nth-child(5) i{background:#41df8d}.alert b{color:#ff6960}
+    .barline{display:grid;gap:14px;margin-top:12px}.bar-row{display:grid;grid-template-columns:86px 1fr 48px;gap:10px;align-items:center;font-size:12px}.bar{height:8px;border-radius:7px;background:#12325f;overflow:hidden}.bar span{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,#3268ff,#62d6ff)}
+    .customer table,.orders table{width:100%;border-collapse:collapse;font-size:12px;color:#e6f2ff}.customer th,.customer td,.orders th,.orders td{padding:6px 8px;text-align:left;border-bottom:1px solid rgba(70,139,218,.2)}th{color:#aecaee}.more{text-align:center;color:#2e9cff;font-size:12px;margin-top:8px}
+    .mini-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}.mini{text-align:center;border-left:1px solid rgba(92,151,219,.26)}.mini:first-child{border-left:0}.mini span{display:block;color:#b8d4ff;font-size:12px}.mini b{display:block;margin-top:6px;font-size:22px}
+    .inventory{display:grid;grid-template-columns:42% 1fr;gap:10px;height:calc(100% - 34px)}.inv-list{display:grid;align-content:center;gap:14px;font-size:14px}.inv-row{display:grid;grid-template-columns:16px 1fr auto;gap:8px}.sw{width:12px;height:12px;border-radius:50%;margin-top:3px}.warns{grid-column:1/3;border-top:1px solid rgba(70,139,218,.28);padding-top:12px;display:flex;justify-content:space-around;color:#ff6860;font-size:13px}
+    .footer{display:flex;justify-content:center;gap:28px;align-items:center;color:#8faed6;font-size:12px}
+    @media(max-width:1200px){.screen{padding:10px 12px;gap:7px;grid-template-rows:56px 88px minmax(0,1fr) 20px}.header{grid-template-columns:220px 1fr 230px}.title h1{font-size:24px}.title p{font-size:13px;margin-top:6px}.brand{font-size:13px}.meta{font-size:11px;gap:8px}.kpi{grid-template-columns:54px 1fr;padding:12px 10px}.kpi-icon{width:42px;height:42px;font-size:23px}.kpi-value{font-size:22px}.layout{gap:7px}.panel{padding:8px}.panel-title{font-size:14px}.flow-top{height:78px}.step-icon{width:44px;height:44px;font-size:23px}.step b{font-size:12px}.step span{font-size:10px}.chart{height:calc(100% - 28px)}table{font-size:10px}.info{font-size:10px;width:132px}.mini b{font-size:18px}}
+  </style>
+</head>
+<body>
+<div class="screen">
+  <header class="header">
+    <div class="brand">全球供应链可视化大屏</div>
+    <div class="title"><h1>订单全流程可视化与KPI监控</h1><p>从松山湖生产制造基地 → 海运 → 迪拜供应中心 → 出库 → 客户地点</p></div>
+    <div class="meta"><span>◷ 2024-05-20 10:30:00</span><span class="dot">⟳ 自动刷新：60s</span></div>
+  </header>
+  <section class="kpis" id="kpis"></section>
+  <main class="layout">
+    <div class="left">
+      <section class="card panel"><div class="panel-title">订单状态分布 <small>本月</small></div><div id="statusChart" class="chart"></div></section>
+      <section class="card panel"><div class="panel-title">异常预警 <small>近7天</small></div><div class="alerts" id="alerts"></div><div class="more">查看更多 &gt;</div></section>
+    </div>
+    <section class="card map-panel center">
+      <div class="flow-top">
+        <div class="step"><div class="step-icon">▣</div><b>1. 松山湖生产制造基地</b><span>生产中</span></div>
+        <div class="step"><div class="step-icon">▰</div><b>2. 海运运输</b><span>海运中</span></div>
+        <div class="step"><div class="step-icon">⌂</div><b>3. 迪拜供应中心</b><span>在库</span></div>
+        <div class="step"><div class="step-icon">▣</div><b>4. 出库配送</b><span>已出库</span></div>
+        <div class="step"><div class="step-icon">●</div><b>5. 客户地点</b><span>已送达</span></div>
+      </div>
+      <div class="map-area">
+        <svg class="route" viewBox="0 0 1000 410" preserveAspectRatio="none">
+          <path d="M120 255 C270 205,360 200,460 225 S650 250,720 245 S820 230,910 210" fill="none" stroke="#23c3ff" stroke-width="3" stroke-dasharray="8 8"/>
+          <path d="M585 238 C625 208,660 218,702 245" fill="none" stroke="#8c69ff" stroke-width="3" stroke-dasharray="8 8"/>
+          <path d="M720 245 C800 248,845 222,912 205" fill="none" stroke="#2de7b8" stroke-width="3" stroke-dasharray="8 8"/>
+        </svg>
+        <div class="node" style="left:12%;top:63%"><div class="pin">▣</div><label>松山湖基地</label></div>
+        <div class="node" style="left:56%;top:58%"><div class="pin" style="background:#8c69ff;box-shadow:0 0 18px #8c69ff">⌂</div><label>迪拜供应中心</label></div>
+        <div class="node" style="left:91%;top:53%"><div class="pin" style="background:#48d985;box-shadow:0 0 18px #48d985">●</div><label>客户地点</label></div>
+        <div class="ship" style="left:40%;top:51%">▰</div><div class="ship" style="left:82%;top:52%">▰</div>
+        <div class="info" style="left:31%;top:62%">海运中<br>航线：南海 → 迪拜<br>船名：COSCO SHIPPING...<br>预计到港：2024-05-25</div>
+        <div class="info purple" style="left:56%;top:68%">迪拜仓库库存<br>库存总量：2,350 件<br>可用库存：1,865 件<br>在途库存：485 件</div>
+        <div class="info green" style="left:79%;top:68%">在途配送<br>配送方式：陆运<br>承运商：Aramex<br>预计送达：2024-05-28</div>
+      </div>
+    </section>
+    <div class="right">
+      <section class="card panel"><div class="panel-title">各阶段KPI达成率 <small>本月</small></div><div class="barline" id="stageBars"></div></section>
+      <section class="card panel customer"><div class="panel-title">客户交付TOP5 <small>本月</small></div><table id="customerTable"></table><div class="more">查看更多 &gt;</div></section>
+    </div>
+    <section class="card panel bottom-a"><div class="panel-title">订单趋势 <small>近12周</small></div><div id="trendChart" class="chart"></div></section>
+    <section class="card panel bottom-b orders"><div class="panel-title">在途订单概览</div><div class="mini-kpis"><div class="mini"><span>在途订单数</span><b>432</b></div><div class="mini"><span>在途金额（USD）</span><b>2.35M</b></div><div class="mini"><span>预计到港（7天内）</span><b>156</b></div><div class="mini"><span>预计到港（7-14天）</span><b>276</b></div></div><table id="orderTable"></table><div class="more">查看更多 &gt;</div></section>
+    <section class="card panel bottom-c"><div class="panel-title">库存健康度 <small>迪拜供应中心</small></div><div class="inventory"><div id="inventoryChart"></div><div class="inv-list" id="inventoryList"></div><div class="warns"><span>低库存SKU　<b>12</b></span><span>滞销SKU　<b>8</b></span><span>查看更多 &gt;</span></div></div></section>
+  </main>
+  <footer class="footer"><span>数据来源：ERP / WMS / TMS / OMS</span><span>|</span><span>数据更新时间：2024-05-20 10:30:00</span></footer>
+</div>
+<script>
+const textStyle={color:'#eaf7ff',fontFamily:'Source Han Sans SC, Microsoft YaHei, Arial',fontWeight:700};
+const charts=[];
+const kpis=[
+  ['▤','订单总数（本月）','1,248','环比 ↑ 12.5%'],['☑','准时交付率（OTD）','92.6%','环比 ↑ 3.7pp'],['◔','平均订单履行周期','28.4 天','环比 ↓ 2.6天'],['▥','海运准时率','89.3%','环比 ↑ 4.1pp'],['⌂','库存周转天数（迪拜仓）','21.7 天','环比 ↓ 2.3天'],['▧','订单完好率','98.4%','环比 ↑ 1.2pp']
+];
+document.getElementById('kpis').innerHTML=kpis.map((k,i)=>`<div class="card kpi"><div class="kpi-icon">${k[0]}</div><div><div class="kpi-label">${k[1]}</div><div class="kpi-value">${k[2]}</div><div class="kpi-trend">${k[3].includes('↓')?k[3].replace('↓','<span class="down">↓</span>'):k[3].replace('↑','<span class="up">↑</span>')}</div></div></div>`).join('');
+document.getElementById('alerts').innerHTML=[['生产延期','5'],['海运延误','7'],['清关异常','3'],['库存不足','4'],['交付延迟','6']].map(a=>`<div class="alert"><i></i><span>${a[0]}</span><b>${a[1]}</b></div>`).join('');
+document.getElementById('stageBars').innerHTML=[['生产及时率',95.2],['海运准时率',89.3],['清关及时率',91.7],['出库及时率',94.8],['交付及时率',92.6]].map(b=>`<div class="bar-row"><span>${b[0]}</span><div class="bar"><span style="width:${b[1]}%"></span></div><em>${b[1]}%</em></div>`).join('')+'<div class="bar-row"><span>0%</span><span style="text-align:center">50%</span><em>100%</em></div>';
+document.getElementById('customerTable').innerHTML='<tr><th>客户名称</th><th>订单数</th><th>OTD</th></tr>'+[['Customer A',236,'94.5%'],['Customer B',198,'92.9%'],['Customer C',156,'91.0%'],['Customer D',134,'90.3%'],['Customer E',112,'89.2%']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+document.getElementById('orderTable').innerHTML='<tr><th>订单号</th><th>船名/航班</th><th>起运港</th><th>目的港</th><th>预计到港</th><th>状态</th></tr>'+[
+['SO2405001','COSCO SHIPPING XXX','深圳','迪拜','2024-05-22','海运中'],['SO2405002','MSC LORETO','宁波','迪拜','2024-05-23','海运中'],['SO2405003','CMA CGM SEMIRAMIS','上海','迪拜','2024-05-25','海运中'],['SO2405004','EVER GIVEN','厦门','迪拜','2024-05-27','海运中'],['SO2405005','OOCL HONG KONG','深圳','迪拜','2024-05-29','海运中']].map(r=>`<tr>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('');
+document.getElementById('inventoryList').innerHTML=[['高周转（>30天）','820 (35%)','#35c989'],['中周转（15-30天）','965 (41%)','#3479ff'],['低周转（7-15天）','385 (16%)','#ffc04e'],['滞销（<7天）','180 (8%)','#ff6262']].map(r=>`<div class="inv-row"><i class="sw" style="background:${r[2]}"></i><span>${r[0]}</span><b>${r[1]}</b></div>`).join('');
+function chart(id){const c=echarts.init(document.getElementById(id));charts.push(c);return c}
+chart('statusChart').setOption({textStyle,legend:{right:8,top:18,orient:'vertical',textStyle},series:[{type:'pie',radius:['46%','72%'],center:['31%','54%'],label:{show:false},data:[['生产中',312],['海运中',234],['迪拜仓库中',198],['已出库',276],['已送达',228]].map(([name,value])=>({name,value}))},{type:'pie',radius:['0','0'],center:['31%','54%'],label:{position:'center',formatter:'1,248\\n总订单',fontSize:18,color:'#fff',fontWeight:700},data:[{value:1}]}]});
+chart('trendChart').setOption({textStyle,tooltip:{trigger:'axis'},grid:{left:42,right:32,top:34,bottom:30},legend:{top:0,textStyle,data:['订单数','OTD（%）']},xAxis:{type:'category',axisLabel:{color:'#cfe2ff'},data:['W9','W10','W11','W12','W14','W15','W16','W17','W18','W19','W20']},yAxis:[{type:'value',axisLabel:{color:'#cfe2ff'},splitLine:{lineStyle:{color:'rgba(92,151,219,.18)'}}},{type:'value',min:0,max:100,axisLabel:{color:'#cfe2ff',formatter:'{value}%'}}],series:[{name:'订单数',type:'bar',barWidth:14,itemStyle:{color:'#318dff'},data:[216,258,204,231,228,252,263,298,259,278,288]},{name:'OTD（%）',type:'line',yAxisIndex:1,smooth:true,symbolSize:6,itemStyle:{color:'#47df7a'},data:[81,86,89,87,86,80,83,90,84,81,83]}]});
+chart('inventoryChart').setOption({textStyle,series:[{type:'pie',radius:['48%','75%'],center:['52%','50%'],label:{show:false},data:[{name:'高周转',value:820,itemStyle:{color:'#35c989'}},{name:'中周转',value:965,itemStyle:{color:'#3479ff'}},{name:'低周转',value:385,itemStyle:{color:'#ffc04e'}},{name:'滞销',value:180,itemStyle:{color:'#ff6262'}}]},{type:'pie',radius:['0','0'],center:['52%','50%'],label:{position:'center',formatter:'库存总量\\n2,350\\n件',fontSize:16,color:'#fff',fontWeight:700},data:[{value:1}]}]});
+window.addEventListener('resize',()=>charts.forEach(c=>c.resize()));
+</script>
+</body>
+</html>
