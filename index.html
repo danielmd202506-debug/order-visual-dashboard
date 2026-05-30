@@ -28,13 +28,13 @@
     .layout{display:grid;grid-template-columns:18% 1fr 18%;grid-template-rows:62% 38%;gap:10px;min-height:0}.panel{padding:12px;min-height:0}.panel-title{font-size:17px;margin-bottom:10px}.panel-title small{font-size:12px;color:#b8d4ff;margin-left:6px}.chart{width:100%;height:calc(100% - 34px);min-height:0}
     .left,.right{display:grid;gap:10px;min-height:0}.left{grid-template-rows:47% 53%;grid-row:1/2}.right{grid-template-rows:47% 53%;grid-row:1/2}.center{grid-column:2;grid-row:1/2;min-height:0}.bottom-a{grid-column:1;grid-row:2}.bottom-b{grid-column:2;grid-row:2}.bottom-c{grid-column:3;grid-row:2}
     .map-panel{padding:12px 18px;background:linear-gradient(180deg,rgba(7,35,79,.72),rgba(4,21,54,.82));border-color:rgba(39,121,226,.62)}
-    .flow-top{height:96px;display:grid;grid-template-columns:repeat(5,1fr);align-items:center;gap:8px}.step{text-align:center;position:relative}.step:not(:last-child):after{content:"➜";position:absolute;right:-17px;top:22px;color:#3589ff;font-size:30px;text-shadow:0 0 10px #218cff}.step-icon{width:58px;height:58px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;font-size:30px;background:radial-gradient(circle,#386db7,#0b2a65 74%);box-shadow:0 0 18px rgba(77,153,255,.32)}.step b{display:block;font-size:14px}.step span{display:block;margin-top:5px;color:#b9d7ff;font-size:12px}
-    .map-area{position:relative;height:calc(100% - 96px);border-radius:4px;background:
+    .flow-top{height:82px;display:grid;grid-template-columns:repeat(5,1fr);align-items:start;gap:8px;padding-top:2px}.step{text-align:center;position:relative;min-width:0}.step:not(:last-child):after{content:"➜";position:absolute;right:-17px;top:19px;color:#3589ff;font-size:27px;text-shadow:0 0 10px #218cff}.step-icon{width:48px;height:48px;margin:0 auto 6px;border-radius:50%;display:grid;place-items:center;font-size:25px;background:radial-gradient(circle,#386db7,#0b2a65 74%);box-shadow:0 0 18px rgba(77,153,255,.32)}.step b{display:block;font-size:13px;line-height:1.15;white-space:normal}.step span{display:block;margin-top:4px;color:#b9d7ff;font-size:11px}
+    .map-area{position:relative;height:calc(100% - 82px);border-radius:4px;background:
       linear-gradient(rgba(26,93,166,.08),rgba(26,93,166,.08)),
       radial-gradient(circle at 52% 46%,rgba(40,146,255,.22),transparent 34%),
       #04163b;overflow:hidden}
     .map-area:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,13,35,.34),transparent 18%,transparent 82%,rgba(3,13,35,.34));pointer-events:none}
-    .world-map{position:absolute;inset:0;z-index:0}.route{position:absolute;inset:0;z-index:1;pointer-events:none}.node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:grid;gap:8px;justify-items:center}.pin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#3ba0ff;box-shadow:0 0 18px #3ba0ff;color:#fff}.node label{font-size:13px;color:#fff;text-shadow:0 0 8px #001b3f}.ship{position:absolute;z-index:3;color:#fff;font-size:24px;text-shadow:0 0 12px #2f9eff}.info{position:absolute;z-index:4;width:160px;padding:10px;border:1px solid rgba(64,188,255,.65);border-radius:6px;background:rgba(3,23,55,.78);font-size:12px;line-height:1.8}.info.purple{border-color:#926cff}.info.green{border-color:#25e4c8}
+    .world-map{position:absolute;inset:0;z-index:0}.route{position:absolute;inset:0;z-index:1;pointer-events:none}.node{position:absolute;z-index:2;transform:translate(-50%,-50%);display:grid;gap:6px;justify-items:center}.pin{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#3ba0ff;box-shadow:0 0 18px #3ba0ff;color:#fff}.node label{font-size:12px;color:#fff;text-shadow:0 0 8px #001b3f;white-space:nowrap}.ship{position:absolute;z-index:3;color:#fff;font-size:24px;text-shadow:0 0 12px #2f9eff}.info{position:absolute;z-index:4;width:172px;padding:9px 10px;border:1px solid rgba(64,188,255,.65);border-radius:6px;background:rgba(3,23,55,.84);font-size:12px;line-height:1.65;box-shadow:0 0 14px rgba(0,0,0,.25)}.info.purple{border-color:#926cff}.info.green{border-color:#25e4c8}
     .alerts{display:grid;gap:8px}.alert{display:grid;grid-template-columns:18px 1fr auto;align-items:center;padding:8px 10px;border-radius:5px;background:rgba(44,86,135,.24);font-size:13px}.alert i{width:12px;height:12px;border-radius:50%;background:#ff684f}.alert:nth-child(3) i,.alert:nth-child(4) i{background:#ffd44d}.alert:nth-child(5) i{background:#41df8d}.alert b{color:#ff6960}
     .barline{display:grid;gap:14px;margin-top:12px}.bar-row{display:grid;grid-template-columns:86px 1fr 48px;gap:10px;align-items:center;font-size:12px}.bar{height:8px;border-radius:7px;background:#12325f;overflow:hidden}.bar span{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,#3268ff,#62d6ff)}
     .customer table,.orders table{width:100%;border-collapse:collapse;font-size:12px;color:#e6f2ff}.customer th,.customer td,.orders th,.orders td{padding:6px 8px;text-align:left;border-bottom:1px solid rgba(70,139,218,.2)}th{color:#aecaee}.more{text-align:center;color:#2e9cff;font-size:12px;margin-top:8px}
@@ -72,13 +72,13 @@
           <path d="M444 246 C430 242,416 240,402 248" fill="none" stroke="#8c69ff" stroke-width="3" stroke-dasharray="8 8"/>
           <path d="M444 246 C427 236,413 235,402 248" fill="none" stroke="#2de7b8" stroke-width="3" stroke-dasharray="8 8"/>
         </svg>
-        <div class="node" style="left:79%;top:54%"><div class="pin">▣</div><label>松山湖基地（东莞）</label></div>
-        <div class="node" style="left:44%;top:60%"><div class="pin" style="background:#8c69ff;box-shadow:0 0 18px #8c69ff">⌂</div><label>迪拜供应中心</label></div>
-        <div class="node" style="left:40%;top:61%"><div class="pin" style="background:#48d985;box-shadow:0 0 18px #48d985">●</div><label>客户地点（利雅得）</label></div>
-        <div class="ship" style="left:61%;top:51%">▰</div><div class="ship" style="left:42%;top:57%">▰</div>
-        <div class="info" style="left:56%;top:62%">海运中<br>航线：南海 → 迪拜<br>船名：COSCO SHIPPING...<br>预计到港：2024-05-25</div>
-        <div class="info purple" style="left:38%;top:69%">迪拜仓库库存<br>库存总量：2,350 件<br>可用库存：1,865 件<br>在途库存：485 件</div>
-        <div class="info green" style="left:21%;top:69%">在途配送<br>配送方式：陆运<br>承运商：Aramex<br>目的地：利雅得<br>预计送达：2024-05-28</div>
+        <div class="node" style="left:79%;top:48%"><div class="pin">▣</div><label>松山湖基地（东莞）</label></div>
+        <div class="node" style="left:44%;top:53%"><div class="pin" style="background:#8c69ff;box-shadow:0 0 18px #8c69ff">⌂</div><label>迪拜供应中心</label></div>
+        <div class="node" style="left:39%;top:55%"><div class="pin" style="background:#48d985;box-shadow:0 0 18px #48d985">●</div><label>客户地点（利雅得）</label></div>
+        <div class="ship" style="left:61%;top:45%">▰</div><div class="ship" style="left:42%;top:48%">▰</div>
+        <div class="info" style="left:58%;top:66%">海运中<br>航线：南海 → 迪拜<br>船名：COSCO SHIPPING...<br>预计到港：2024-05-25</div>
+        <div class="info purple" style="left:37%;top:68%">迪拜仓库库存<br>库存总量：2,350 件<br>可用库存：1,865 件<br>在途库存：485 件</div>
+        <div class="info green" style="left:16%;top:60%">在途配送<br>配送方式：陆运<br>承运商：Aramex<br>目的地：利雅得<br>预计送达：2024-05-28</div>
       </div>
     </section>
     <div class="right">
