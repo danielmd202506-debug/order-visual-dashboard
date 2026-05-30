@@ -49,7 +49,7 @@
   <header class="header">
     <div class="brand">全球供应链可视化大屏</div>
     <div class="title"><h1>订单全流程可视化与KPI监控</h1><p>从松山湖生产制造基地 → 海运 → 迪拜供应中心 → 出库 → 客户地点</p></div>
-    <div class="meta"><span>◷ 2024-05-20 10:30:00</span><span class="dot">⟳ 自动刷新：60s</span><button class="full-btn" id="fullBtn" type="button">全屏</button></div>
+    <div class="meta"><span>◷ 当前时间：<b id="liveClock">--</b></span><span class="dot">⟳ 自动刷新：60s</span><button class="full-btn" id="fullBtn" type="button">全屏</button></div>
   </header>
   <section class="kpis" id="kpis"></section>
   <main class="layout">
@@ -142,11 +142,22 @@ function bindFullscreen(){
     setTimeout(()=>charts.forEach(c=>c.resize()),120);
   });
 }
+function bindLiveClock(){
+  const clock=document.getElementById('liveClock');
+  const pad=n=>String(n).padStart(2,'0');
+  const tick=()=>{
+    const d=new Date();
+    clock.textContent=`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  };
+  tick();
+  setInterval(tick,1000);
+}
 renderWorldMap();
 chart('statusChart').setOption({textStyle,legend:{right:8,top:14,orient:'vertical',textStyle},series:[{type:'pie',radius:['48%','74%'],center:['31%','52%'],label:{show:false},data:[['生产中',312],['海运中',234],['迪拜仓库中',198],['已出库',276],['已送达',228]].map(([name,value])=>({name,value}))}]});
 chart('trendChart').setOption({textStyle,tooltip:{trigger:'axis'},grid:{left:42,right:32,top:34,bottom:30},legend:{top:0,textStyle,data:['订单数','OTD（%）']},xAxis:{type:'category',axisLabel:{color:'#cfe2ff'},data:['W9','W10','W11','W12','W14','W15','W16','W17','W18','W19','W20']},yAxis:[{type:'value',axisLabel:{color:'#cfe2ff'},splitLine:{lineStyle:{color:'rgba(92,151,219,.18)'}}},{type:'value',min:0,max:100,axisLabel:{color:'#cfe2ff',formatter:'{value}%'}}],series:[{name:'订单数',type:'bar',barWidth:14,itemStyle:{color:'#318dff'},data:[216,258,204,231,228,252,263,298,259,278,288]},{name:'OTD（%）',type:'line',yAxisIndex:1,smooth:true,symbolSize:6,itemStyle:{color:'#47df7a'},data:[81,86,89,87,86,80,83,90,84,81,83]}]});
 chart('inventoryChart').setOption({textStyle,series:[{type:'pie',radius:['50%','76%'],center:['52%','50%'],label:{show:false},data:[{name:'高周转',value:820,itemStyle:{color:'#35c989'}},{name:'中周转',value:965,itemStyle:{color:'#3479ff'}},{name:'低周转',value:385,itemStyle:{color:'#ffc04e'}},{name:'滞销',value:180,itemStyle:{color:'#ff6262'}}]}]});
 bindFullscreen();
+bindLiveClock();
 window.addEventListener('resize',()=>charts.forEach(c=>c.resize()));
 </script>
 </body>
