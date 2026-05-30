@@ -21,21 +21,21 @@
     .brand{display:flex;align-items:center;gap:10px;padding-top:13px;font-size:17px}.brand:before{content:"";width:18px;height:18px;border-radius:50%;background:conic-gradient(from 30deg,#25e6ff,#2b79ff,#25e6ff);box-shadow:0 0 16px #239cff}
     .title{text-align:center;position:relative}.title h1{margin:0;font-size:30px;line-height:1.1;letter-spacing:0;text-shadow:0 0 18px rgba(95,183,255,.62)}.title p{margin:10px 0 0;color:#bcd8ff;font-size:14px;white-space:nowrap}
     .title:before,.title:after{content:"";position:absolute;top:8px;width:120px;height:28px;border-top:1px solid rgba(45,177,255,.5)}.title:before{right:calc(100% + 18px);transform:skewX(-32deg);border-right:1px solid rgba(45,177,255,.45)}.title:after{left:calc(100% + 18px);transform:skewX(32deg);border-left:1px solid rgba(45,177,255,.45)}
-    .meta{display:flex;justify-content:flex-end;align-items:flex-start;gap:10px;padding-top:14px;color:#bcd8ff;font-size:13px;white-space:nowrap}.meta span{white-space:nowrap}.dot{color:#2ee6ff}.full-btn{height:24px;min-width:48px;padding:0 10px;border:1px solid rgba(51,168,255,.65);border-radius:4px;background:rgba(9,43,92,.75);color:#bcd8ff;font:inherit;font-weight:700;line-height:22px;white-space:nowrap;cursor:pointer;box-shadow:inset 0 0 12px rgba(45,177,255,.14)}
+    .icon-svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.meta{display:flex;justify-content:flex-end;align-items:flex-start;gap:10px;padding-top:14px;color:#bcd8ff;font-size:13px;white-space:nowrap}.meta span,.full-btn{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}.meta-icon{font-size:15px;color:#6bd4ff}.dot{color:#2ee6ff}.full-btn{height:24px;min-width:48px;padding:0 10px;border:1px solid rgba(51,168,255,.65);border-radius:4px;background:rgba(9,43,92,.75);color:#bcd8ff;font:inherit;font-weight:700;line-height:22px;cursor:pointer;box-shadow:inset 0 0 12px rgba(45,177,255,.14)}
     .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.card{position:relative;background:linear-gradient(180deg,rgba(12,48,94,.92),rgba(5,27,65,.9));border:1px solid rgba(45,139,242,.58);border-radius:5px;box-shadow:inset 0 0 22px rgba(35,141,255,.08),0 0 12px rgba(0,104,255,.08);overflow:hidden}
-    .kpi{display:grid;grid-template-columns:70px 1fr;padding:18px 18px 12px}.kpi-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:32px;background:radial-gradient(circle,#2e9cff,#123f91 70%);box-shadow:0 0 22px rgba(43,151,255,.38)}.kpi:nth-child(2) .kpi-icon{background:radial-gradient(circle,#5bf0b0,#0e4a70 70%)}.kpi:nth-child(4) .kpi-icon{background:radial-gradient(circle,#9a65ff,#22216d 70%)}.kpi:nth-child(5) .kpi-icon{background:radial-gradient(circle,#f4a65d,#3f3550 70%)}
+    .kpi{display:grid;grid-template-columns:70px 1fr;padding:18px 18px 12px}.kpi-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:30px;color:#dff2ff;background:radial-gradient(circle,#2e9cff,#123f91 70%);box-shadow:0 0 22px rgba(43,151,255,.38)}.kpi:nth-child(2) .kpi-icon{background:radial-gradient(circle,#5bf0b0,#0e4a70 70%)}.kpi:nth-child(4) .kpi-icon{background:radial-gradient(circle,#9a65ff,#22216d 70%)}.kpi:nth-child(5) .kpi-icon{background:radial-gradient(circle,#f4a65d,#3f3550 70%)}
     .kpi-label{max-width:68%;color:#c8dcff;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.kpi-value{margin-top:12px;font-size:28px;line-height:1}.kpi-value small{font-size:16px;margin-left:6px}.kpi-trend{position:absolute;top:16px;right:16px;max-width:38%;color:#c8dcff;font-size:13px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.up{color:#ff776d}.down{color:#2ae89c}
     .layout{display:grid;grid-template-columns:18% 1fr 18%;grid-template-rows:minmax(0,3fr) minmax(0,2fr);column-gap:10px;row-gap:18px;min-height:0}.panel{padding:12px;min-height:0}.panel-title{font-size:17px;margin-bottom:10px}.panel-title small{font-size:12px;color:#b8d4ff;margin-left:6px}.chart{width:100%;height:calc(100% - 34px);min-height:0}.donut-chart{height:calc(100% - 78px)}.donut-summary{height:44px;display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(70,139,218,.22);color:#bcd8ff;font-size:12px}.donut-summary b{color:#fff;font-size:22px}.donut-summary span:last-child{color:#86b8ff}
     .left,.right{display:grid;gap:10px;min-height:0}.left{grid-template-rows:47% 53%;grid-row:1/2}.right{grid-template-rows:47% 53%;grid-row:1/2}.center{grid-column:2;grid-row:1/2;min-height:0}.bottom-a{grid-column:1;grid-row:2}.bottom-b{grid-column:2;grid-row:2}.bottom-c{grid-column:3;grid-row:2}
     .map-panel{padding:12px 18px;background:linear-gradient(180deg,rgba(7,35,79,.72),rgba(4,21,54,.82));border-color:rgba(39,121,226,.62)}
-    .flow-top{height:96px;display:grid;grid-template-columns:repeat(5,1fr);align-items:start;gap:12px;padding-top:2px}.step{text-align:center;position:relative;min-width:0;display:grid;justify-items:center;grid-template-rows:42px 24px 16px}.step:not(:last-child):after{content:"➜";position:absolute;right:-19px;top:15px;color:#3589ff;font-size:25px;text-shadow:0 0 10px #218cff}.step-icon{width:40px;height:40px;margin:0 auto 4px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:radial-gradient(circle,#386db7,#0b2a65 74%);box-shadow:0 0 18px rgba(77,153,255,.32)}.step b{display:block;width:100%;font-size:11px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.step span{display:block;margin-top:2px;color:#b9d7ff;font-size:11px;line-height:1.2;white-space:nowrap}
+    .flow-top{height:96px;display:grid;grid-template-columns:repeat(5,1fr);align-items:start;gap:12px;padding-top:2px}.step{text-align:center;position:relative;min-width:0;display:grid;justify-items:center;grid-template-rows:42px 24px 16px}.step:not(:last-child):after{content:"➜";position:absolute;right:-19px;top:15px;color:#3589ff;font-size:25px;text-shadow:0 0 10px #218cff}.step-icon{width:40px;height:40px;margin:0 auto 4px;border-radius:50%;display:grid;place-items:center;font-size:22px;color:#dff2ff;background:radial-gradient(circle,#386db7,#0b2a65 74%);box-shadow:0 0 18px rgba(77,153,255,.32)}.step b{display:block;width:100%;font-size:11px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.step span{display:block;margin-top:2px;color:#b9d7ff;font-size:11px;line-height:1.2;white-space:nowrap}
     .map-area{position:relative;height:calc(100% - 96px);border-radius:4px;background:
       linear-gradient(rgba(26,93,166,.08),rgba(26,93,166,.08)),
       radial-gradient(circle at 52% 46%,rgba(40,146,255,.22),transparent 34%),
       #04163b;overflow:hidden}
     .map-area:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,13,35,.34),transparent 18%,transparent 82%,rgba(3,13,35,.34));pointer-events:none}
     .world-map{position:absolute;inset:0 0 104px 0;z-index:0}.map-info-row{position:absolute;left:14px;right:14px;bottom:12px;z-index:4;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.info{min-width:0;padding:10px 12px;border:1px solid rgba(64,188,255,.65);border-radius:6px;background:rgba(3,23,55,.88);font-size:12px;line-height:1.6;box-shadow:0 0 14px rgba(0,0,0,.25)}.info b{display:block;margin-bottom:3px;color:#fff;font-size:13px}.info.purple{border-color:#926cff}.info.green{border-color:#25e4c8}
-    .alerts{display:grid;gap:8px}.alert{display:grid;grid-template-columns:18px 1fr auto;align-items:center;padding:8px 10px;border-radius:5px;background:rgba(44,86,135,.24);font-size:13px}.alert i{width:12px;height:12px;border-radius:50%;background:#ff684f}.alert:nth-child(3) i,.alert:nth-child(4) i{background:#ffd44d}.alert:nth-child(5) i{background:#41df8d}.alert b{color:#ff6960}
+    .alerts{display:grid;gap:8px}.alert{display:grid;grid-template-columns:22px 1fr auto;align-items:center;padding:8px 10px;border-radius:5px;background:rgba(44,86,135,.24);font-size:13px}.alert i{display:grid;place-items:center;width:16px;height:16px;color:#ff684f}.alert:nth-child(3) i,.alert:nth-child(4) i{color:#ffd44d}.alert:nth-child(5) i{color:#41df8d}.alert b{color:#ff6960}
     .barline{display:grid;gap:14px;margin-top:12px}.bar-row{display:grid;grid-template-columns:86px 1fr 48px;gap:10px;align-items:center;font-size:12px}.bar{height:8px;border-radius:7px;background:#12325f;overflow:hidden}.bar span{display:block;height:100%;border-radius:7px;background:linear-gradient(90deg,#3268ff,#62d6ff)}
     .customer table,.orders table{width:100%;border-collapse:collapse;font-size:12px;color:#e6f2ff}.customer th,.customer td,.orders th,.orders td{padding:6px 8px;text-align:left;border-bottom:1px solid rgba(70,139,218,.2)}th{color:#aecaee}
     .mini-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}.mini{text-align:center;border-left:1px solid rgba(92,151,219,.26)}.mini:first-child{border-left:0}.mini span{display:block;color:#b8d4ff;font-size:12px}.mini b{display:block;margin-top:6px;font-size:22px}
@@ -45,11 +45,26 @@
   </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true">
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-13.5 5.8"/><path d="M4 12A8 8 0 0 1 17.5 6.2"/><path d="M17 2v5h5"/><path d="M7 22v-5H2"/></symbol>
+  <symbol id="i-maximize" viewBox="0 0 24 24"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M21 16v5h-5"/><path d="M3 16v5h5"/></symbol>
+  <symbol id="i-order" viewBox="0 0 24 24"><path d="M8 3h8l2 3v15H6V6z"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/><path d="M4 4h16v16H4z"/></symbol>
+  <symbol id="i-cycle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l4 2"/></symbol>
+  <symbol id="i-ship" viewBox="0 0 24 24"><path d="M4 16h16l-2 4H6z"/><path d="M8 16V8h7l3 4v4"/><path d="M8 8h-2"/><path d="M10 11h2"/><path d="M14 11h2"/></symbol>
+  <symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M3 10 12 4l9 6"/><path d="M5 10v10h14V10"/><path d="M8 20v-6h8v6"/><path d="M8 14h8"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m8.5 12 2.2 2.2L16 9"/></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V9l5 3V9l5 3V7h8v14z"/><path d="M7 17h2"/><path d="M12 17h2"/><path d="M17 17h2"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 7h11v10H3z"/><path d="M14 11h4l3 3v3h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-5.4 7-11a7 7 0 0 0-14 0c0 5.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 22 20H2z"/><path d="M12 9v5"/><path d="M12 17h.01"/></symbol>
+</svg>
 <div class="screen">
   <header class="header">
     <div class="brand">全球供应链可视化大屏</div>
     <div class="title"><h1>订单全流程可视化与KPI监控</h1><p>深圳供应中心（中国） → 欧洲供应中心（匈牙利） / 拉美供应中心（墨西哥 / 巴西） / 迪拜供应中心（中东） → 清关 → 出库 → 客户地点</p></div>
-    <div class="meta"><span>◷ 当前时间：<b id="liveClock">--</b></span><span class="dot">⟳ 自动刷新：60s</span><button class="full-btn" id="fullBtn" type="button">全屏</button></div>
+    <div class="meta"><span><svg class="icon-svg meta-icon"><use href="#i-clock"></use></svg>当前时间：<b id="liveClock">--</b></span><span class="dot"><svg class="icon-svg meta-icon"><use href="#i-refresh"></use></svg>自动刷新：60s</span><button class="full-btn" id="fullBtn" type="button"><svg class="icon-svg"><use href="#i-maximize"></use></svg>全屏</button></div>
   </header>
   <section class="kpis" id="kpis"></section>
   <main class="layout">
@@ -59,11 +74,11 @@
     </div>
     <section class="card map-panel center">
       <div class="flow-top">
-        <div class="step"><div class="step-icon">▣</div><b>1. 松山湖生产制造基地</b><span>生产中</span></div>
-        <div class="step"><div class="step-icon">▰</div><b>2. 海运运输</b><span>海运中</span></div>
-        <div class="step"><div class="step-icon">⌂</div><b>3. 迪拜供应中心</b><span>在库</span></div>
-        <div class="step"><div class="step-icon">▣</div><b>4. 出库配送</b><span>已出库</span></div>
-        <div class="step"><div class="step-icon">●</div><b>5. 客户地点</b><span>已送达</span></div>
+        <div class="step"><div class="step-icon"><svg class="icon-svg"><use href="#i-factory"></use></svg></div><b>1. 松山湖生产制造基地</b><span>生产中</span></div>
+        <div class="step"><div class="step-icon"><svg class="icon-svg"><use href="#i-ship"></use></svg></div><b>2. 海运运输</b><span>海运中</span></div>
+        <div class="step"><div class="step-icon"><svg class="icon-svg"><use href="#i-warehouse"></use></svg></div><b>3. 迪拜供应中心</b><span>在库</span></div>
+        <div class="step"><div class="step-icon"><svg class="icon-svg"><use href="#i-truck"></use></svg></div><b>4. 出库配送</b><span>已出库</span></div>
+        <div class="step"><div class="step-icon"><svg class="icon-svg"><use href="#i-map-pin"></use></svg></div><b>5. 客户地点</b><span>已送达</span></div>
       </div>
       <div class="map-area">
         <div id="worldMap" class="world-map"></div>
@@ -88,10 +103,10 @@
 const textStyle={color:'#eaf7ff',fontFamily:'Source Han Sans SC, Microsoft YaHei, Arial',fontWeight:700};
 const charts=[];
 const kpis=[
-  ['▤','订单总数（本月）','1,248','环比 ↑ 12.5%'],['☑','准时交付率（OTD）','92.6%','环比 ↑ 3.7pp'],['◔','平均订单履行周期','28.4 天','环比 ↓ 2.6天'],['▥','海运准时率','89.3%','环比 ↑ 4.1pp'],['⌂','库存周转天数（迪拜仓）','21.7 天','环比 ↓ 2.3天'],['▧','订单完好率','98.4%','环比 ↑ 1.2pp']
+  ['i-order','订单总数（本月）','1,248','环比 ↑ 12.5%'],['i-check','准时交付率（OTD）','92.6%','环比 ↑ 3.7pp'],['i-cycle','平均订单履行周期','28.4 天','环比 ↓ 2.6天'],['i-ship','海运准时率','89.3%','环比 ↑ 4.1pp'],['i-warehouse','库存周转天数（迪拜仓）','21.7 天','环比 ↓ 2.3天'],['i-shield','订单完好率','98.4%','环比 ↑ 1.2pp']
 ];
-document.getElementById('kpis').innerHTML=kpis.map((k,i)=>`<div class="card kpi"><div class="kpi-icon">${k[0]}</div><div><div class="kpi-label">${k[1]}</div><div class="kpi-value">${k[2]}</div><div class="kpi-trend">${k[3].includes('↓')?k[3].replace('↓','<span class="down">↓</span>'):k[3].replace('↑','<span class="up">↑</span>')}</div></div></div>`).join('');
-document.getElementById('alerts').innerHTML=[['生产延期','5'],['海运延误','7'],['清关异常','3'],['库存不足','4'],['交付延迟','6']].map(a=>`<div class="alert"><i></i><span>${a[0]}</span><b>${a[1]}</b></div>`).join('');
+document.getElementById('kpis').innerHTML=kpis.map((k,i)=>`<div class="card kpi"><div class="kpi-icon"><svg class="icon-svg"><use href="#${k[0]}"></use></svg></div><div><div class="kpi-label">${k[1]}</div><div class="kpi-value">${k[2]}</div><div class="kpi-trend">${k[3].includes('↓')?k[3].replace('↓','<span class="down">↓</span>'):k[3].replace('↑','<span class="up">↑</span>')}</div></div></div>`).join('');
+document.getElementById('alerts').innerHTML=[['生产延期','5'],['海运延误','7'],['清关异常','3'],['库存不足','4'],['交付延迟','6']].map(a=>`<div class="alert"><i><svg class="icon-svg"><use href="#i-alert"></use></svg></i><span>${a[0]}</span><b>${a[1]}</b></div>`).join('');
 document.getElementById('stageBars').innerHTML=[['生产及时率',95.2],['海运准时率',89.3],['清关及时率',91.7],['出库及时率',94.8],['交付及时率',92.6]].map(b=>`<div class="bar-row"><span>${b[0]}</span><div class="bar"><span style="width:${b[1]}%"></span></div><em>${b[1]}%</em></div>`).join('')+'<div class="bar-row"><span>0%</span><span style="text-align:center">50%</span><em>100%</em></div>';
 document.getElementById('customerTable').innerHTML='<tr><th>客户名称</th><th>订单数</th><th>OTD</th></tr>'+[['Customer A',236,'94.5%'],['Customer B',198,'92.9%'],['Customer C',156,'91.0%'],['Customer D',134,'90.3%'],['Customer E',112,'89.2%']].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
 document.getElementById('orderTable').innerHTML='<tr><th>订单号</th><th>船名/航班</th><th>起运港</th><th>目的港</th><th>预计到港</th><th>状态</th></tr>'+[
