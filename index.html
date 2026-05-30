@@ -121,16 +121,16 @@ async function renderWorldMap(){
       {name:'迪拜供应中心（中东）',value:[55.27,25.2,94],itemStyle:{color:'#9a71ff'}}
     ];
     const flows=[
-      {coords:[[114.06,22.54],[19.04,47.5]],lineStyle:{color:'#48d985',curveness:.28}},
-      {coords:[[114.06,22.54],[-99.13,19.43]],lineStyle:{color:'#ffbd4a',curveness:.42}},
-      {coords:[[114.06,22.54],[55.27,25.2]],lineStyle:{color:'#9a71ff',curveness:.2}}
+      {coords:[[114.06,22.54],[19.04,47.5]],lineStyle:{curveness:.28}},
+      {coords:[[114.06,22.54],[-99.13,19.43]],lineStyle:{curveness:.42}},
+      {coords:[[114.06,22.54],[55.27,25.2]],lineStyle:{curveness:.2}}
     ];
     map.setOption({
       textStyle,
       geo:{map:'world',roam:false,zoom:1.02,center:[20,22],silent:true,itemStyle:{areaColor:'rgba(19,70,128,.62)',borderColor:'rgba(93,177,255,.62)',borderWidth:.65},emphasis:{disabled:true}},
       series:[
         {type:'map',map:'world',geoIndex:0,silent:true,data:[]},
-        {type:'lines',coordinateSystem:'geo',zlevel:2,effect:{show:true,period:4,trailLength:.3,symbol:'arrow',symbolSize:7,color:'#c9f3ff'},lineStyle:{width:2,opacity:.9,type:'dashed'},data:flows},
+        {type:'lines',coordinateSystem:'geo',zlevel:2,effect:{show:true,period:4,trailLength:.3,symbol:'arrow',symbolSize:7,color:'#ff9f2f'},lineStyle:{color:'#ff9f2f',width:2,opacity:.95,type:'dashed'},data:flows},
         {type:'effectScatter',coordinateSystem:'geo',zlevel:3,rippleEffect:{scale:3.4,brushType:'stroke'},symbolSize:10,label:{show:true,position:'right',formatter:'{b}',color:'#eaf7ff',fontSize:11,fontWeight:700,textBorderColor:'rgba(0,16,42,.95)',textBorderWidth:3},itemStyle:{shadowBlur:16,shadowColor:'#58baff'},data:supplyCenters}
       ]
     });
